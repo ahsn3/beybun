@@ -195,24 +195,23 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  min-width: 5.6rem;
+  min-width: 6.5rem;
   appearance: none;
   background: #000;
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #fff;
-  padding: 0.5rem 1.85rem 0.5rem 0.7rem;
+  padding: 0.5rem 1.85rem 0.5rem 0.75rem;
   border-radius: var(--radius);
   cursor: pointer;
-  letter-spacing: 0.08em;
-  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
   font-weight: 600;
-  text-transform: uppercase;
   position: relative;
 }
 
-.lang-toggle .lang-flag {
-  font-size: 1rem;
-  line-height: 1;
+.lang-toggle .lang-label {
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .lang-toggle::after {
@@ -266,10 +265,6 @@ ul {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.lang-menu .lang-flag {
-  font-size: 1.05rem;
-}
-
 [dir="rtl"] .lang-toggle {
   padding: 0.5rem 0.7rem 0.5rem 1.85rem;
 }
@@ -286,7 +281,6 @@ ul {
 
 [dir="rtl"] .lang-menu button {
   text-align: right;
-  flex-direction: row-reverse;
 }
 
 .menu-toggle {
@@ -929,6 +923,10 @@ ul {
   font-size: 0.9rem;
 }
 
+.form-error[hidden] {
+  display: none !important;
+}
+
 .mono {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
@@ -1063,6 +1061,25 @@ ul {
   display: grid;
   place-items: center;
   padding: 2rem;
+  position: relative;
+}
+
+.admin-login[hidden],
+.admin-dash[hidden],
+.admin-section[hidden] {
+  display: none !important;
+}
+
+.admin-back {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 2;
+}
+
+[dir="rtl"] .admin-back {
+  left: auto;
+  right: 1.25rem;
 }
 
 .admin-login-card {
@@ -1107,6 +1124,11 @@ ul {
   align-items: flex-start;
   gap: 1rem;
   margin-bottom: 1.5rem;
+}
+
+.admin-header > div .admin-back-inline {
+  display: inline-flex;
+  margin-bottom: 0.85rem;
 }
 
 .admin-header h1 {

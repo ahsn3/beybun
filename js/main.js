@@ -2,12 +2,12 @@
   var LANG_KEY = "beybun-lang";
   var supported = ["en", "tr", "ar", "it", "es", "fa"];
   var langMeta = {
-    en: { flag: "🇬🇧", label: "English", code: "EN" },
-    tr: { flag: "🇹🇷", label: "Türkçe", code: "TR" },
-    ar: { flag: "🇸🇦", label: "العربية", code: "AR" },
-    it: { flag: "🇮🇹", label: "Italiano", code: "IT" },
-    es: { flag: "🇪🇸", label: "Español", code: "ES" },
-    fa: { flag: "🇮🇷", label: "فارسی", code: "FA" }
+    en: { label: "English" },
+    tr: { label: "Türkçe" },
+    ar: { label: "العربية" },
+    it: { label: "Italiano" },
+    es: { label: "Español" },
+    fa: { label: "فارسی" }
   };
 
   function getLang() {
@@ -84,8 +84,7 @@
     var meta = langMeta[current] || langMeta.en;
     root.innerHTML =
       '<button type="button" class="lang-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">' +
-        '<span class="lang-flag">' + meta.flag + "</span>" +
-        '<span class="lang-code">' + meta.code + "</span>" +
+        '<span class="lang-label">' + meta.label + "</span>" +
       "</button>" +
       '<ul class="lang-menu" role="listbox"></ul>';
 
@@ -98,7 +97,7 @@
       btn.setAttribute("role", "option");
       btn.dataset.lang = code;
       if (code === current) btn.classList.add("is-active");
-      btn.innerHTML = '<span class="lang-flag">' + item.flag + "</span><span>" + item.label + "</span>";
+      btn.textContent = item.label;
       btn.addEventListener("click", function () {
         root.classList.remove("is-open");
         root.querySelector(".lang-toggle").setAttribute("aria-expanded", "false");

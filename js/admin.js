@@ -15,8 +15,23 @@
   }
 
   function showScreen(name) {
-    $("loginScreen").hidden = name !== "login";
-    $("dashScreen").hidden = name !== "dash";
+    var login = $("loginScreen");
+    var dash = $("dashScreen");
+    if (name === "dash") {
+      login.hidden = true;
+      login.style.display = "none";
+      dash.hidden = false;
+      dash.style.display = "";
+      document.body.classList.add("is-admin-dash");
+      document.body.classList.remove("is-admin-login");
+    } else {
+      dash.hidden = true;
+      dash.style.display = "none";
+      login.hidden = false;
+      login.style.display = "";
+      document.body.classList.add("is-admin-login");
+      document.body.classList.remove("is-admin-dash");
+    }
   }
 
   function setTab(tab) {
