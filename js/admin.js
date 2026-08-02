@@ -6,7 +6,19 @@
   function $(id) { return document.getElementById(id); }
 
   function money(n) {
-    return Number(n || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " TRY";
+    return Math.round(Number(n || 0)).toLocaleString("tr-TR") + " TRY";
+  }
+
+  function digitsOnly(value) {
+    return String(value || "").replace(/\D/g, "");
+  }
+
+  function bindMoneyInput(el) {
+    if (!el) return;
+    el.addEventListener("input", function () {
+      el.value = digitsOnly(el.value);
+      updateNightsAndTotal();
+    });
   }
 
   function fmtDate(iso) {
@@ -118,6 +130,7 @@
         '<article class="admin-card">' +
           '<div class="admin-card-top">' +
             '<div><strong class="mono">' + escapeHtml(p.requestNumber) + '</strong>' +
+            ' <a class="pay-open-link" href="payment.html?ref=' + encodeURIComponent(p.requestNumber) + '" target="_blank" rel="noopener">Open →</a>' +
             '<span class="admin-badge">' + escapeHtml(p.status) + '</span></div>' +
             '<time>' + escapeHtml(fmtDate(p.createdAt)) + '</time>' +
           '</div>' +
@@ -163,19 +176,18 @@
     }
     var nightsInput = form.nights;
     if (nightsInput) nightsInput.value = nights > 0 ? String(nights) : "";
-    var daily = Number(form.dailyCost.value) || 0;
+    var daily = Number(digitsOnly(form.dailyCost.value)) || 0;
     if (nights > 0 && daily > 0) {
-      form.totalCost.value = (daily * nights).toFixed(2);
+      form.totalCost.value = String(daily * nights);
+    } else if (!daily) {
+      form.totalCost.value = "";
     }
   }
 
   function initLogin() {
-    if (window.BeybunStore.isLoggedIn()) {
-      showScreen("dash");
-      refresh();
-    } else {
-      showScreen("login");
-    }
+    // Always require login on each visit to the admin page
+    window.BeybunStore.logout();
+    showScreen("login");
 
     $("adminLoginForm").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -218,11 +230,13 @@
 
   function initCreate() {
     var form = $("createPaymentForm");
-    ["checkin", "checkout", "dailyCost"].forEach(function (name) {
+    ["checkin", "checkout"].forEach(function (name) {
       var el = form.querySelector('[name="' + name + '"]');
       if (el) el.addEventListener("input", updateNightsAndTotal);
       if (el) el.addEventListener("change", updateNightsAndTotal);
     });
+    bindMoneyInput(form.dailyCost);
+    bindMoneyInput(form.downPayment);
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -233,6 +247,14 @@
         alert("Check-out must be after check-in.");
         return;
       }
+      if (!data.get("room")) {
+        alert("Please select a room.");
+        return;
+      }
+
+      var dailyCost = digitsOnly(data.get("dailyCost"));
+      var totalCost = digitsOnly(data.get("totalCost"));
+      var downPayment = digitsOnly(data.get("downPayment"));
 
       window.BeybunStore.createPaymentRequest({
         clientName: data.get("clientName"),
@@ -241,9 +263,9 @@
         checkin: data.get("checkin"),
         checkout: data.get("checkout"),
         nights: nights,
-        dailyCost: data.get("dailyCost"),
-        totalCost: data.get("totalCost"),
-        downPayment: data.get("downPayment"),
+        dailyCost: dailyCost,
+        totalCost: totalCost,
+        downPayment: downPayment,
         notes: data.get("notes")
       }).then(function (item) {
         var guestLink = new URL("payment.html", window.location.href);
@@ -251,6 +273,10 @@
         $("createdNumber").textContent = item.requestNumber;
         $("createdLink").href = guestLink.toString();
         $("createdLink").textContent = guestLink.toString();
+        var openLink = $("createdOpenLink");
+        if (openLink) {
+          openLink.href = guestLink.toString();
+        }
         $("createdBox").hidden = false;
         form.reset();
         updateNightsAndTotal();
@@ -305,7 +331,12 @@
         var form = $("createPaymentForm");
         form.clientName.value = c.name || "";
         form.phone.value = c.phone || "";
-        form.room.value = c.room || "";
+        var roomVal = c.room || "";
+        var roomOptions = ["Standard Room", "Triple Room", "Jacuzzi Room"];
+        var matched = roomOptions.find(function (r) {
+          return roomVal === r || roomVal.toLowerCase().indexOf(r.split(" ")[0].toLowerCase()) !== -1;
+        });
+        form.room.value = matched || "";
         form.checkin.value = c.checkin || "";
         form.checkout.value = c.checkout || "";
         updateNightsAndTotal();

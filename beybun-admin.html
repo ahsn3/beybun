@@ -63,8 +63,11 @@
       <h2>Create payment request</h2>
       <div id="createdBox" class="created-box" hidden>
         <p>Payment request created. Share this number with the guest:</p>
-        <p class="mono created-number" id="createdNumber"></p>
-        <p>Or send this guest payment link (works on any phone):</p>
+        <p class="created-number-row">
+          <span class="mono created-number" id="createdNumber"></span>
+          <a class="btn btn-ghost" id="createdOpenLink" href="#" target="_blank" rel="noopener">Open payment →</a>
+        </p>
+        <p>Or copy the full guest link:</p>
         <p><a id="createdLink" href="#" target="_blank" rel="noopener"></a></p>
       </div>
       <form class="form admin-form" id="createPaymentForm">
@@ -80,7 +83,12 @@
         </div>
         <div class="field">
           <label for="room">Room</label>
-          <input id="room" name="room" placeholder="Jacuzzi Room" />
+          <select id="room" name="room" required>
+            <option value="">Select a room</option>
+            <option value="Standard Room">Standard Room</option>
+            <option value="Triple Room">Triple Room</option>
+            <option value="Jacuzzi Room">Jacuzzi Room</option>
+          </select>
         </div>
         <div class="form-row">
           <div class="field">
@@ -100,16 +108,16 @@
         <div class="form-row">
           <div class="field">
             <label for="dailyCost">Daily cost (TRY)</label>
-            <input id="dailyCost" name="dailyCost" type="number" min="0" step="0.01" required />
+            <input id="dailyCost" name="dailyCost" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="2000" required />
           </div>
           <div class="field">
             <label for="totalCost">Total cost (TRY)</label>
-            <input id="totalCost" name="totalCost" type="number" min="0" step="0.01" required readonly />
+            <input id="totalCost" name="totalCost" type="text" inputmode="numeric" placeholder="0" required readonly />
           </div>
         </div>
         <div class="field">
           <label for="downPayment">Down payment amount (TRY)</label>
-          <input id="downPayment" name="downPayment" type="number" min="0" step="0.01" required />
+          <input id="downPayment" name="downPayment" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="1000" required />
         </div>
         <div class="field">
           <label for="notes">Notes</label>

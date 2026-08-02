@@ -1284,10 +1284,41 @@ ul {
   background: var(--orange-soft);
 }
 
+.created-number-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+}
+
 .created-number {
   font-size: 1.6rem;
   color: var(--gold-bright);
-  margin: 0.5rem 0;
+  margin: 0;
+}
+
+.pay-open-link {
+  margin-left: 0.45rem;
+  color: var(--gold-bright);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.pay-open-link:hover {
+  color: var(--white);
+}
+
+.admin-form input[type="date"] {
+  color-scheme: dark;
+}
+
+.admin-form input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 1;
+  filter: invert(1) brightness(1.2);
 }
 
 /* Footer */

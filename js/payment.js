@@ -5,7 +5,7 @@
   function $(id) { return document.getElementById(id); }
 
   function money(n) {
-    return Number(n || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " TRY";
+    return Math.round(Number(n || 0)).toLocaleString("tr-TR") + " TRY";
   }
 
   function showStep(name) {
