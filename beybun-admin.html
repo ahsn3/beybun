@@ -13,127 +13,126 @@
 </head>
 <body class="admin-body" data-page="admin">
   <div id="loginScreen" class="admin-login">
-    <a class="btn btn-ghost admin-back" href="index.html">← Return to website</a>
+    <a class="btn btn-ghost admin-back" href="index.html" data-i18n-admin="backWebsite">← Return to website</a>
     <form class="admin-login-card form" id="adminLoginForm" autocomplete="off">
       <img src="assets/logo.jpeg" alt="" class="admin-login-logo" />
-      <h1>Staff access</h1>
-      <p>Private hotel portal. Not linked from the public menu.</p>
+      <h1 data-i18n-admin="loginTitle">Staff access</h1>
+      <p data-i18n-admin="loginText">Private hotel portal. Not linked from the public menu.</p>
       <div class="field">
-        <label for="adminUsername">Username</label>
+        <label for="adminUsername" data-i18n-admin="username">Username</label>
         <input id="adminUsername" type="text" required autocomplete="username" />
       </div>
       <div class="field">
-        <label for="adminPassword">Password</label>
+        <label for="adminPassword" data-i18n-admin="password">Password</label>
         <input id="adminPassword" type="password" required autocomplete="current-password" />
       </div>
-      <p class="form-error" id="loginError" hidden>Incorrect username or password.</p>
-      <button class="btn" type="submit">Sign in</button>
+      <p class="form-error" id="loginError" hidden data-i18n-admin="loginError">Incorrect username or password.</p>
+      <button class="btn" type="submit" data-i18n-admin="signIn">Sign in</button>
     </form>
   </div>
 
   <div id="dashScreen" class="admin-dash" hidden>
     <header class="admin-header">
-      <div>
-        <a class="btn btn-ghost admin-back-inline" href="index.html">← Return to website</a>
+      <a class="btn btn-ghost admin-back-inline" href="index.html" data-i18n-admin="backWebsite">← Return to website</a>
+      <div class="admin-header-brand">
         <p class="eyebrow">THE BEYBÛN HOTEL</p>
-        <h1>Admin dashboard</h1>
+        <h1 data-i18n-admin="dashboardTitle">Admin dashboard</h1>
       </div>
-      <button class="btn btn-ghost" type="button" id="logoutBtn">Sign out</button>
+      <button class="btn btn-ghost" type="button" id="logoutBtn" data-i18n-admin="signOut">Sign out</button>
     </header>
 
     <nav class="admin-tabs" aria-label="Admin sections">
-      <button type="button" class="is-active" data-admin-tab="contacts">Contacts <span id="contactCount">0</span></button>
-      <button type="button" data-admin-tab="payments">Payments <span id="paymentCount">0</span></button>
-      <button type="button" data-admin-tab="create">Create payment</button>
-      <button type="button" data-admin-tab="security">Security</button>
+      <button type="button" class="is-active" data-admin-tab="payments"><span data-i18n-admin="tabPayments">Payments</span> <span id="paymentCount">0</span></button>
+      <button type="button" data-admin-tab="create" data-i18n-admin="tabCreate">Create payment</button>
+      <button type="button" data-admin-tab="contacts"><span data-i18n-admin="tabContacts">Contacts</span> <span id="contactCount">0</span></button>
+      <button type="button" data-admin-tab="security" data-i18n-admin="tabSecurity">Security</button>
     </nav>
 
-    <section id="tabContacts" class="admin-section">
-      <h2>Contact requests</h2>
-      <div id="contactsList" class="admin-list"></div>
-    </section>
-
-    <section id="tabPayments" class="admin-section" hidden>
-      <h2>Payment requests</h2>
-      <p class="lead">Share the request number or guest link. Card details appear here after the guest pays (auto-refreshes).</p>
+    <section id="tabPayments" class="admin-section">
+      <h2 data-i18n-admin="paymentsTitle">Payment requests</h2>
       <div id="paymentsList" class="admin-list"></div>
     </section>
 
     <section id="tabCreate" class="admin-section" hidden>
-      <h2>Create payment request</h2>
+      <h2 data-i18n-admin="createTitle">Create payment request</h2>
       <div id="createdBox" class="created-box" hidden>
-        <p>Payment request created. Share this number with the guest:</p>
+        <p data-i18n-admin="createdText">Payment request created. Share this number with the guest:</p>
         <p class="created-number-row">
           <span class="mono created-number" id="createdNumber"></span>
-          <a class="btn btn-ghost" id="createdOpenLink" href="#" target="_blank" rel="noopener">Open payment →</a>
         </p>
-        <p>Or copy the full guest link:</p>
+        <p data-i18n-admin="guestLinkLabel">Guest payment link:</p>
         <p><a id="createdLink" href="#" target="_blank" rel="noopener"></a></p>
       </div>
       <form class="form admin-form" id="createPaymentForm">
         <div class="form-row">
           <div class="field">
-            <label for="clientName">Guest name</label>
+            <label for="clientName" data-i18n-admin="guestName">Guest name</label>
             <input id="clientName" name="clientName" required />
           </div>
           <div class="field">
-            <label for="phone">Phone / WhatsApp</label>
+            <label for="phone" data-i18n-admin="phone">Phone / WhatsApp</label>
             <input id="phone" name="phone" type="tel" />
           </div>
         </div>
         <div class="field">
-          <label for="room">Room</label>
+          <label for="room" data-i18n-admin="room">Room</label>
           <select id="room" name="room" required>
-            <option value="">Select a room</option>
-            <option value="Standard Room">Standard Room</option>
-            <option value="Triple Room">Triple Room</option>
-            <option value="Jacuzzi Room">Jacuzzi Room</option>
+            <option value="" data-i18n-admin="roomSelect">Select a room</option>
+            <option value="Standard Room" data-i18n-admin="roomStandard">Standard Room</option>
+            <option value="Triple Room" data-i18n-admin="roomTriple">Triple Room</option>
+            <option value="Jacuzzi Room" data-i18n-admin="roomJacuzzi">Jacuzzi Room</option>
           </select>
         </div>
         <div class="form-row">
           <div class="field">
-            <label for="checkin">Check-in</label>
+            <label for="checkin" data-i18n-admin="checkin">Check-in</label>
             <input id="checkin" name="checkin" type="date" required />
           </div>
           <div class="field">
-            <label for="checkout">Check-out</label>
+            <label for="checkout" data-i18n-admin="checkout">Check-out</label>
             <input id="checkout" name="checkout" type="date" required />
           </div>
         </div>
         <div class="field">
-          <label>Nights</label>
+          <label data-i18n-admin="nights">Nights</label>
           <p class="nights-display mono" id="nightsDisplay">—</p>
           <input type="hidden" name="nights" id="nights" value="" />
         </div>
         <div class="form-row">
           <div class="field">
-            <label for="dailyCost">Daily cost (TRY)</label>
+            <label for="dailyCost" data-i18n-admin="dailyCost">Daily cost (TRY)</label>
             <input id="dailyCost" name="dailyCost" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="2000" required />
           </div>
           <div class="field">
-            <label for="totalCost">Total cost (TRY)</label>
+            <label for="totalCost" data-i18n-admin="totalCost">Total cost (TRY)</label>
             <input id="totalCost" name="totalCost" type="text" inputmode="numeric" placeholder="0" required readonly />
           </div>
         </div>
         <div class="field">
-          <label for="downPayment">Down payment amount (TRY)</label>
+          <label for="downPayment" data-i18n-admin="downPayment">Down payment amount (TRY)</label>
           <input id="downPayment" name="downPayment" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="1000" required />
         </div>
         <div class="field">
-          <label for="notes">Notes</label>
+          <label for="notes" data-i18n-admin="notes">Notes</label>
           <textarea id="notes" name="notes"></textarea>
         </div>
-        <button class="btn" type="submit">Generate payment request</button>
+        <button class="btn" type="submit" data-i18n-admin="generate">Generate payment request</button>
       </form>
     </section>
 
+    <section id="tabContacts" class="admin-section" hidden>
+      <h2 data-i18n-admin="contactsTitle">Contact requests</h2>
+      <div id="contactsList" class="admin-list"></div>
+    </section>
+
     <section id="tabSecurity" class="admin-section" hidden>
-      <h2>Security</h2>
-      <p class="lead">Username is <strong class="mono">Mustafa.Beybun</strong>. Change the password in Railway Variables: <span class="mono">ADMIN_PASSWORD</span> (and optionally <span class="mono">JWT_SECRET</span>).</p>
-      <p class="admin-empty">Payments and contacts are stored in PostgreSQL so every device sees the same data.</p>
+      <h2 data-i18n-admin="securityTitle">Security</h2>
+      <p class="lead" data-i18n-admin="securityText">Username is Mustafa.Beybun. Change the password in Railway Variables: ADMIN_PASSWORD (and optionally JWT_SECRET).</p>
+      <p class="admin-empty" data-i18n-admin="securityNote">Payments and contacts are stored in PostgreSQL so every device sees the same data.</p>
     </section>
   </div>
 
+  <script src="js/i18n.js"></script>
   <script src="js/store.js"></script>
   <script src="js/admin.js"></script>
 </body>
