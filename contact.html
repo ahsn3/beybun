@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Booking | THE BEYBÛN HOTEL</title>
+  <meta name="description" content="Contact THE BEYBÛN HOTEL in Taksim, Istanbul to book Standard, Triple, or Jacuzzi rooms." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="assets/logo.jpeg" />
+</head>
+<body data-page="contact">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.jpeg" alt="THE BEYBÛN HOTEL logo" />
+        <span class="brand-text"><strong>THE BEYBÛN</strong><span>HOTEL · TAKSIM</span></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html" data-nav="home" data-i18n="nav.home">Home</a>
+        <a href="rooms.html" data-nav="rooms" data-i18n="nav.rooms">Rooms</a>
+        <a href="about.html" data-nav="about" data-i18n="nav.about">About</a>
+        <a href="gallery.html" data-nav="gallery" data-i18n="nav.gallery">Gallery</a>
+        <a href="contact.html" data-nav="contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <select id="langSelect" aria-label="Language">
+            <option value="en">EN</option>
+            <option value="it">IT</option>
+            <option value="es">ES</option>
+            <option value="fa">FA</option>
+          </select>
+        </div>
+        <a class="btn" href="#bookingForm" data-i18n="nav.book">Book Now</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-media">
+        <img src="assets/hotel.jpeg" alt="THE BEYBÛN HOTEL" />
+      </div>
+      <div class="container hero-content">
+        <span class="eyebrow" data-i18n="contact.eyebrow">Reservations</span>
+        <h1 class="hero-brand" data-i18n="contact.title">Contact & booking</h1>
+        <p class="hero-text" data-i18n="contact.text">Tell us your dates and room preference. We will confirm availability as soon as possible.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <div class="contact-card reveal">
+          <h3 data-i18n="contact.infoTitle">Hotel details</h3>
+          <dl class="contact-lines">
+            <div>
+              <dt data-i18n="contact.addressLabel">Address</dt>
+              <dd data-i18n="contact.address">Şehit Muhtar Mah., Nane Sokak No: 8, Beyoğlu, 34435 Istanbul, Turkey</dd>
+            </div>
+            <div>
+              <dt data-i18n="contact.phoneLabel">Phone / WhatsApp</dt>
+              <dd><a href="tel:+905302296779">+90 530 229 67 79</a></dd>
+            </div>
+            <div>
+              <dt data-i18n="contact.emailLabel">Email</dt>
+              <dd><a href="mailto:info@beybunhotel.com">info@beybunhotel.com</a></dd>
+            </div>
+            <div>
+              <dt data-i18n="contact.hoursLabel">Reception</dt>
+              <dd data-i18n="contact.hours">Open 24 hours</dd>
+            </div>
+          </dl>
+          <div class="map-embed">
+            <iframe
+              title="THE BEYBÛN HOTEL map"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=Sehit%20Muhtar%20Nane%20Sk.%20No:8%20Beyoglu%20Istanbul&t=&z=16&ie=UTF8&iwloc=&output=embed">
+            </iframe>
+          </div>
+        </div>
+
+        <div class="contact-card reveal">
+          <h3 data-i18n="contact.formTitle">Request a reservation</h3>
+          <form class="form" id="bookingForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="name" data-i18n="contact.name">Full name</label>
+                <input id="name" name="name" type="text" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="email" data-i18n="contact.email">Email</label>
+                <input id="email" name="email" type="email" required autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="phone" data-i18n="contact.phone">Phone</label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" />
+              </div>
+              <div class="field">
+                <label for="room" data-i18n="contact.room">Room type</label>
+                <select id="room" name="room" required>
+                  <option value="" data-i18n="contact.roomSelect">Select a room</option>
+                  <option value="standard" data-i18n="roomCards.standardName">Standard Room</option>
+                  <option value="triple" data-i18n="roomCards.tripleName">Triple Room</option>
+                  <option value="jacuzzi" data-i18n="roomCards.jacuzziName">Jacuzzi Room</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="checkin" data-i18n="contact.checkin">Check-in</label>
+                <input id="checkin" name="checkin" type="date" required />
+              </div>
+              <div class="field">
+                <label for="checkout" data-i18n="contact.checkout">Check-out</label>
+                <input id="checkout" name="checkout" type="date" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="guests" data-i18n="contact.guests">Guests</label>
+              <input id="guests" name="guests" type="number" min="1" max="6" value="2" required />
+            </div>
+            <div class="field">
+              <label for="message" data-i18n="contact.message">Message</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+            <button class="btn" type="submit" data-i18n="contact.submit">Send request</button>
+            <p class="form-note" data-i18n="contact.note">This form opens your email app with the booking details ready to send.</p>
+            <p class="form-success" id="formSuccess" data-i18n="contact.success">Your email draft is ready. Send it to complete your request.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.jpeg" alt="" />
+        <h3>THE BEYBÛN HOTEL</h3>
+        <p data-i18n="footer.blurb">Boutique hotel in Taksim, Istanbul.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.explore">Explore</h4>
+        <a href="rooms.html" data-i18n="nav.rooms">Rooms</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.visit">Visit</h4>
+        <p data-i18n="contact.address">Şehit Muhtar Mah., Nane Sokak No: 8, Beyoğlu, 34435 Istanbul, Turkey</p>
+        <a href="tel:+905302296779">+90 530 229 67 79</a>
+        <a href="https://wa.me/905302296779" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> THE BEYBÛN HOTEL. <span data-i18n="footer.rights">All rights reserved.</span></span>
+      <span data-i18n="brand.place">Taksim · Istanbul</span>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

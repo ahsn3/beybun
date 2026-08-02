@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | THE BEYBÛN HOTEL</title>
+  <meta name="description" content="About THE BEYBÛN HOTEL — boutique hospitality on Nane Sokak, Taksim, Istanbul." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="assets/logo.jpeg" />
+</head>
+<body data-page="about">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.jpeg" alt="THE BEYBÛN HOTEL logo" />
+        <span class="brand-text"><strong>THE BEYBÛN</strong><span>HOTEL · TAKSIM</span></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html" data-nav="home" data-i18n="nav.home">Home</a>
+        <a href="rooms.html" data-nav="rooms" data-i18n="nav.rooms">Rooms</a>
+        <a href="about.html" data-nav="about" data-i18n="nav.about">About</a>
+        <a href="gallery.html" data-nav="gallery" data-i18n="nav.gallery">Gallery</a>
+        <a href="contact.html" data-nav="contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <select id="langSelect" aria-label="Language">
+            <option value="en">EN</option>
+            <option value="it">IT</option>
+            <option value="es">ES</option>
+            <option value="fa">FA</option>
+          </select>
+        </div>
+        <a class="btn" href="contact.html" data-i18n="nav.book">Book Now</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="hero-media">
+        <img src="assets/hotel.jpeg" alt="THE BEYBÛN HOTEL exterior" />
+      </div>
+      <div class="container hero-content">
+        <span class="eyebrow" data-i18n="about.eyebrow">Our story</span>
+        <h1 class="hero-brand" data-i18n="about.title">Named for calm. Built for the city.</h1>
+        <p class="hero-text" data-i18n="about.text">Beybûn means chamomile — a symbol of quiet comfort.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split reveal">
+        <div>
+          <h2 data-i18n="brand.name">THE BEYBÛN HOTEL</h2>
+          <p class="lead" style="margin-bottom: 1.25rem;" data-i18n="about.body1">Located on Nane Sokak in Şehit Muhtar, THE BEYBÛN HOTEL sits in one of Istanbul’s most walkable neighborhoods.</p>
+          <p class="lead" data-i18n="about.body2">We host travelers from Italy, Spain, Iran, and far beyond.</p>
+        </div>
+        <div class="media-frame">
+          <img src="assets/gallery/lobby-2.jpg" alt="Hotel lobby area" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container split reverse reveal">
+        <div class="media-frame">
+          <img src="assets/gallery/taksim-square.webp" alt="Taksim area" onerror="this.src='assets/gallery/taksim.webp'" />
+        </div>
+        <div>
+          <span class="eyebrow" data-i18n="footer.visit">Visit</span>
+          <h2 data-i18n="about.locTitle">Where you will find us</h2>
+          <p class="lead" data-i18n="about.locText">Şehit Muhtar Mahallesi, Nane Sokak No: 8, Beyoğlu — a few minutes from İstiklal Street and Taksim Square.</p>
+          <div class="btn-group" style="margin-top: 1.75rem;">
+            <a class="btn" href="contact.html" data-i18n="nav.book">Book Now</a>
+            <a class="btn btn-ghost" href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.jpeg" alt="" />
+        <h3>THE BEYBÛN HOTEL</h3>
+        <p data-i18n="footer.blurb">Boutique hotel in Taksim, Istanbul.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.explore">Explore</h4>
+        <a href="rooms.html" data-i18n="nav.rooms">Rooms</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.visit">Visit</h4>
+        <p data-i18n="contact.address">Şehit Muhtar Mah., Nane Sokak No: 8, Beyoğlu, 34435 Istanbul, Turkey</p>
+        <a href="tel:+905302296779">+90 530 229 67 79</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> THE BEYBÛN HOTEL. <span data-i18n="footer.rights">All rights reserved.</span></span>
+      <span data-i18n="brand.place">Taksim · Istanbul</span>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
