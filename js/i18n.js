@@ -10,7 +10,8 @@ window.BEYBUN_I18N = {
       jacuzziTitle: "Jacuzzi Room | THE BEYBÛN HOTEL",
       aboutTitle: "About | THE BEYBÛN HOTEL",
       galleryTitle: "Gallery | THE BEYBÛN HOTEL",
-      contactTitle: "Contact & Booking | THE BEYBÛN HOTEL"
+      contactTitle: "Contact & Booking | THE BEYBÛN HOTEL",
+      paymentTitle: "Payment | THE BEYBÛN HOTEL"
     },
     nav: {
       home: "Home",
@@ -18,6 +19,7 @@ window.BEYBUN_I18N = {
       about: "About",
       gallery: "Gallery",
       contact: "Contact",
+      payment: "Payment",
       book: "Book Now"
     },
     brand: {
@@ -131,8 +133,38 @@ window.BEYBUN_I18N = {
       guests: "Guests",
       message: "Message",
       submit: "Send request",
-      note: "This form opens your email app with the booking details ready to send.",
-      success: "Your email draft is ready. Send it to complete your request."
+      note: "Your request is sent to the hotel on WhatsApp for a fast reply.",
+      success: "Request ready — confirm send in WhatsApp to complete your booking request."
+    },
+    payment: {
+      eyebrow: "Secure payment",
+      title: "Reservation payment",
+      text: "Enter the payment request number provided by the hotel to view your reservation and pay the down payment.",
+      lookupTitle: "Payment request number",
+      lookupText: "Use the code you received from THE BEYBÛN HOTEL (for example BB-123456).",
+      requestLabel: "Request number",
+      lookupBtn: "View reservation",
+      invalid: "Invalid payment request number.",
+      detailsTitle: "Reservation details",
+      clientName: "Guest name",
+      room: "Room",
+      checkin: "Check-in",
+      checkout: "Check-out",
+      dailyCost: "Daily cost",
+      totalCost: "Total cost",
+      downPayment: "Down payment",
+      goPay: "Go to payment",
+      back: "Back",
+      cardTitle: "Card details",
+      paying: "Amount due now",
+      cardHolder: "Cardholder name",
+      cardNumber: "Card number",
+      cardExpiry: "Expiration date",
+      cardCvv: "CVV",
+      submitCard: "Submit payment",
+      secureNote: "Your card details are sent securely to the hotel for processing. Charges are confirmed manually.",
+      successTitle: "Thank you",
+      successText: "Payment submitted successfully. Your payment is being processed. Once confirmed, your payment receipt will be sent to you. Thank you for choosing our hotel."
     },
     footer: {
       blurb: "Boutique hotel in Taksim, Istanbul — close to İstiklal Street, calm enough to rest.",
@@ -157,7 +189,8 @@ window.BEYBUN_I18N = {
       jacuzziTitle: "Camera Jacuzzi | THE BEYBÛN HOTEL",
       aboutTitle: "Chi siamo | THE BEYBÛN HOTEL",
       galleryTitle: "Galleria | THE BEYBÛN HOTEL",
-      contactTitle: "Contatti e prenotazioni | THE BEYBÛN HOTEL"
+      contactTitle: "Contatti e prenotazioni | THE BEYBÛN HOTEL",
+      paymentTitle: "Pagamento | THE BEYBÛN HOTEL"
     },
     nav: {
       home: "Home",
@@ -165,6 +198,7 @@ window.BEYBUN_I18N = {
       about: "Chi siamo",
       gallery: "Galleria",
       contact: "Contatti",
+      payment: "Pagamento",
       book: "Prenota"
     },
     brand: {
@@ -281,6 +315,36 @@ window.BEYBUN_I18N = {
       note: "Il modulo apre la tua app email con i dettagli della prenotazione pronti da inviare.",
       success: "La bozza email è pronta. Inviarla per completare la richiesta."
     },
+    payment: {
+      eyebrow: "Pagamento sicuro",
+      title: "Pagamento prenotazione",
+      text: "Inserisci il numero di richiesta fornito dall’hotel per vedere la prenotazione e pagare l’acconto.",
+      lookupTitle: "Numero richiesta di pagamento",
+      lookupText: "Usa il codice ricevuto da THE BEYBÛN HOTEL (ad esempio BB-123456).",
+      requestLabel: "Numero richiesta",
+      lookupBtn: "Vedi prenotazione",
+      invalid: "Numero di richiesta non valido.",
+      detailsTitle: "Dettagli prenotazione",
+      clientName: "Nome ospite",
+      room: "Camera",
+      checkin: "Check-in",
+      checkout: "Check-out",
+      dailyCost: "Costo giornaliero",
+      totalCost: "Costo totale",
+      downPayment: "Acconto",
+      goPay: "Vai al pagamento",
+      back: "Indietro",
+      cardTitle: "Dati della carta",
+      paying: "Importo dovuto ora",
+      cardHolder: "Intestatario",
+      cardNumber: "Numero carta",
+      cardExpiry: "Scadenza",
+      cardCvv: "CVV",
+      submitCard: "Invia pagamento",
+      secureNote: "I dati della carta sono inviati in modo sicuro all’hotel per l’elaborazione. L’addebito è confermato manualmente.",
+      successTitle: "Grazie",
+      successText: "Pagamento inviato con successo. Il pagamento è in elaborazione. Una volta confermato, la ricevuta ti sarà inviata. Grazie per aver scelto il nostro hotel."
+    },
     footer: {
       blurb: "Boutique hotel a Taksim, Istanbul — vicino a İstiklal, abbastanza tranquillo per riposare.",
       explore: "Esplora",
@@ -304,7 +368,8 @@ window.BEYBUN_I18N = {
       jacuzziTitle: "Habitación Jacuzzi | THE BEYBÛN HOTEL",
       aboutTitle: "Nosotros | THE BEYBÛN HOTEL",
       galleryTitle: "Galería | THE BEYBÛN HOTEL",
-      contactTitle: "Contacto y reservas | THE BEYBÛN HOTEL"
+      contactTitle: "Contacto y reservas | THE BEYBÛN HOTEL",
+      paymentTitle: "Pago | THE BEYBÛN HOTEL"
     },
     nav: {
       home: "Inicio",
@@ -312,6 +377,7 @@ window.BEYBUN_I18N = {
       about: "Nosotros",
       gallery: "Galería",
       contact: "Contacto",
+      payment: "Pago",
       book: "Reservar"
     },
     brand: {
@@ -428,6 +494,36 @@ window.BEYBUN_I18N = {
       note: "El formulario abre tu correo con los datos de la reserva listos para enviar.",
       success: "El borrador del correo está listo. Envíalo para completar la solicitud."
     },
+    payment: {
+      eyebrow: "Pago seguro",
+      title: "Pago de reserva",
+      text: "Introduce el número de solicitud que te dio el hotel para ver tu reserva y pagar el anticipo.",
+      lookupTitle: "Número de solicitud de pago",
+      lookupText: "Usa el código recibido de THE BEYBÛN HOTEL (por ejemplo BB-123456).",
+      requestLabel: "Número de solicitud",
+      lookupBtn: "Ver reserva",
+      invalid: "Número de solicitud no válido.",
+      detailsTitle: "Detalles de la reserva",
+      clientName: "Nombre del huésped",
+      room: "Habitación",
+      checkin: "Entrada",
+      checkout: "Salida",
+      dailyCost: "Coste diario",
+      totalCost: "Coste total",
+      downPayment: "Anticipo",
+      goPay: "Ir al pago",
+      back: "Volver",
+      cardTitle: "Datos de la tarjeta",
+      paying: "Importe a pagar ahora",
+      cardHolder: "Titular",
+      cardNumber: "Número de tarjeta",
+      cardExpiry: "Caducidad",
+      cardCvv: "CVV",
+      submitCard: "Enviar pago",
+      secureNote: "Los datos de la tarjeta se envían de forma segura al hotel. El cargo se confirma manualmente.",
+      successTitle: "Gracias",
+      successText: "Pago enviado correctamente. Su pago está siendo procesado. Una vez confirmado, se le enviará el recibo. Gracias por elegir nuestro hotel."
+    },
     footer: {
       blurb: "Hotel boutique en Taksim, Estambul — cerca de İstiklal, lo bastante tranquilo para descansar.",
       explore: "Explorar",
@@ -451,7 +547,8 @@ window.BEYBUN_I18N = {
       jacuzziTitle: "اتاق جکوزی | هتل بیبون",
       aboutTitle: "درباره ما | هتل بیبون",
       galleryTitle: "گالری | هتل بیبون",
-      contactTitle: "تماس و رزرو | هتل بیبون"
+      contactTitle: "تماس و رزرو | هتل بیبون",
+      paymentTitle: "پرداخت | هتل بیبون"
     },
     nav: {
       home: "خانه",
@@ -459,6 +556,7 @@ window.BEYBUN_I18N = {
       about: "درباره ما",
       gallery: "گالری",
       contact: "تماس",
+      payment: "پرداخت",
       book: "رزرو"
     },
     brand: {
@@ -575,6 +673,36 @@ window.BEYBUN_I18N = {
       note: "این فرم برنامه ایمیل شما را با جزئیات رزرو آماده می‌کند.",
       success: "پیش‌نویس ایمیل آماده است. برای تکمیل درخواست آن را ارسال کنید."
     },
+    payment: {
+      eyebrow: "پرداخت امن",
+      title: "پرداخت رزرو",
+      text: "شماره درخواست پرداختی که هتل به شما داده را وارد کنید تا جزئیات رزرو را ببینید و بیعانه را بپردازید.",
+      lookupTitle: "شماره درخواست پرداخت",
+      lookupText: "از کدی که از هتل بیبون دریافت کرده‌اید استفاده کنید (مثلاً BB-123456).",
+      requestLabel: "شماره درخواست",
+      lookupBtn: "مشاهده رزرو",
+      invalid: "شماره درخواست نامعتبر است.",
+      detailsTitle: "جزئیات رزرو",
+      clientName: "نام مهمان",
+      room: "اتاق",
+      checkin: "ورود",
+      checkout: "خروج",
+      dailyCost: "هزینه روزانه",
+      totalCost: "هزینه کل",
+      downPayment: "بیعانه",
+      goPay: "رفتن به پرداخت",
+      back: "بازگشت",
+      cardTitle: "اطلاعات کارت",
+      paying: "مبلغ قابل پرداخت اکنون",
+      cardHolder: "نام دارنده کارت",
+      cardNumber: "شماره کارت",
+      cardExpiry: "تاریخ انقضا",
+      cardCvv: "CVV",
+      submitCard: "ثبت پرداخت",
+      secureNote: "اطلاعات کارت به‌صورت امن برای پردازش به هتل ارسال می‌شود. تأیید مبلغ به‌صورت دستی انجام می‌شود.",
+      successTitle: "سپاسگزاریم",
+      successText: "پرداخت با موفقیت ثبت شد. پرداخت شما در حال بررسی است. پس از تأیید، رسید برای شما ارسال خواهد شد. از انتخاب هتل ما سپاسگزاریم."
+    },
     footer: {
       blurb: "هتل بوتیک در تکسیم، استانبول — نزدیک خیابان استقلال، آرام برای استراحت.",
       explore: "کاوش",
@@ -585,6 +713,364 @@ window.BEYBUN_I18N = {
       bookThis: "رزرو این اتاق",
       backRooms: "همه اتاق‌ها",
       specs: "در یک نگاه"
+    }
+  },
+
+  tr: {
+    dir: "ltr",
+    meta: {
+      homeTitle: "THE BEYBÛN HOTEL | Taksim, İstanbul",
+      roomsTitle: "Odalar | THE BEYBÛN HOTEL",
+      standardTitle: "Standart Oda | THE BEYBÛN HOTEL",
+      tripleTitle: "Üç Kişilik Oda | THE BEYBÛN HOTEL",
+      jacuzziTitle: "Jakuzi Odası | THE BEYBÛN HOTEL",
+      aboutTitle: "Hakkımızda | THE BEYBÛN HOTEL",
+      galleryTitle: "Galeri | THE BEYBÛN HOTEL",
+      contactTitle: "İletişim ve Rezervasyon | THE BEYBÛN HOTEL",
+      paymentTitle: "Ödeme | THE BEYBÛN HOTEL"
+    },
+    nav: {
+      home: "Ana Sayfa",
+      rooms: "Odalar",
+      about: "Hakkımızda",
+      gallery: "Galeri",
+      contact: "İletişim",
+      payment: "Ödeme",
+      book: "Rezervasyon"
+    },
+    brand: {
+      name: "THE BEYBÛN HOTEL",
+      place: "Taksim · İstanbul"
+    },
+    home: {
+      headline: "İstanbul’un kalbinde konaklayın",
+      text: "İstiklal Caddesi ve Taksim Meydanı’na birkaç adım — sakin odalar, sıcak misafirperverlik ve kapınızın önünde şehir.",
+      ctaRooms: "Odaları Gör",
+      ctaContact: "Konaklama Ayırt",
+      introEyebrow: "Hoş geldiniz",
+      introTitle: "Nane Sokak’ta butik konfor",
+      introText: "THE BEYBÛN HOTEL, İstanbul’a yakın olmak isteyen ancak dinlenmeden vazgeçmeyen gezginler için Beyoğlu’nda zarif bir üs sunar. Sabah kahvesinden gece dönüşlerine kadar her şey sade, temiz ve sıcak tutulur.",
+      roomsEyebrow: "Konaklama",
+      roomsTitle: "Üç oda. Konaklamanızı seçin.",
+      roomsText: "Çiftler ve yalnız misafirler için Standart, aile ve arkadaşlar için Üç Kişilik, daha özel bir dinlenme için Jakuzi.",
+      viewAll: "Tüm odaları keşfedin",
+      amenEyebrow: "Otel konforu",
+      amenTitle: "Her gün düşünülmüş detaylar",
+      a1t: "Taksim’de merkezi konum",
+      a1d: "İstiklal Caddesi, Taksim Meydanı ve metro bağlantılarına dakikalar.",
+      a2t: "Ücretsiz Wi‑Fi",
+      a2d: "İş, görüşme ve yayın için otel genelinde hızlı internet.",
+      a3t: "Günlük kahvaltı",
+      a3d: "Vejetaryen ve helal seçenekler dahil taze başlangıç.",
+      a4t: "24 saat resepsiyon",
+      a4d: "İstediğiniz saatte yardım ve şehir önerileri."
+    },
+    roomsPage: {
+      eyebrow: "Bizimle kalın",
+      title: "Odalarımız",
+      text: "Her oda klimalıdır; özel banyo, çay & kahve seti ve şehirden sonra ihtiyacınız olan huzur vardır."
+    },
+    roomCards: {
+      standardName: "Standart Oda",
+      standardDesc: "Çiftler veya yalnız gezginler için sakin bir çift kişilik oda — temiz çizgiler, yumuşak ışık ve dinlendirici bir gece.",
+      tripleName: "Üç Kişilik Oda",
+      tripleDesc: "Üç misafir için yeterli alan — birlikte İstanbul’u gezen aile veya arkadaşlar için ideal.",
+      jacuzziName: "Jakuzi Odası",
+      jacuzziDesc: "Oda içi jakuzi ile daha fazla mahremiyet — Taksim sokaklarından sonra rahatlayın.",
+      guests2: "2 misafir",
+      guests3: "3 misafir",
+      bath: "Özel banyo",
+      jacuzzi: "Özel jakuzi",
+      details: "Oda detayları"
+    },
+    standard: {
+      eyebrow: "Oda tipi",
+      title: "Standart Oda",
+      text: "Konforlu ve bakımlı Standart Odamız, Taksim’in enerjisine yakın dinlendirici geceler için tasarlandı.",
+      body: "Kaliteli yatak, karartma perdesi, klima, duşlu özel banyo, düz ekran TV ve çay & kahve köşesi. İstiklal’de uzun bir yürüyüşten sonra ideal.",
+      size: "Rahat düzen",
+      bed: "Çift kişilik yatak",
+      view: "Şehir konaklaması",
+      wifi: "Ücretsiz Wi‑Fi"
+    },
+    triple: {
+      eyebrow: "Oda tipi",
+      title: "Üç Kişilik Oda",
+      text: "Beyoğlu merkezinde birlikte kalmak isteyen aileler ve küçük gruplar için daha fazla alan.",
+      body: "Üç Kişilik Oda üç misafiri aynı özenli olanaklarla ağırlar — klima, özel banyo, TV, kettle ve günlük temizlik.",
+      size: "Aile dostu",
+      bed: "3 kişi",
+      view: "Şehir konaklaması",
+      wifi: "Ücretsiz Wi‑Fi"
+    },
+    jacuzzi: {
+      eyebrow: "Oda tipi",
+      title: "Jakuzi Odası",
+      text: "Kendi jakuzinizle daha özel bir kaçış — İstanbul günlerinden sonra ekstra sakinlik isteyen çiftler için ideal.",
+      body: "Modern oda konforuna ek olarak özel jakuzi. Yumuşak aydınlatma, sakin atmosfer ve istediğinizde birkaç dakika ötede Taksim gece hayatı.",
+      size: "Premium dinlenme",
+      bed: "Çift kişilik yatak",
+      view: "Özel jakuzi",
+      wifi: "Ücretsiz Wi‑Fi"
+    },
+    about: {
+      eyebrow: "Hikâyemiz",
+      title: "Huzur için bir isim. Şehir için bir otel.",
+      text: "Beybûn, papatya demektir — sessiz konforun simgesi. Bu fikir, dünyanın her yerinden misafirleri nasıl karşıladığımıza yön verir.",
+      body1: "Şehit Muhtar’da Nane Sokak üzerinde yer alan THE BEYBÛN HOTEL, İstanbul’un en yürünebilir semtlerinden birindedir. Müzeler, kafeler, galeriler ve Boğaz kolay erişilebilir.",
+      body2: "İtalya, İspanya, İran ve ötesinden gezginleri ağırlıyoruz. Ekibimiz özenle çalışır, odaları kusursuz tutar ve şehirde güvenle ilerlemenize yardımcı olur.",
+      locTitle: "Bizi nerede bulursunuz",
+      locText: "Şehit Muhtar Mahallesi, Nane Sokak No: 8, Beyoğlu — İstiklal Caddesi ve Taksim Meydanı’na birkaç dakika."
+    },
+    gallery: {
+      eyebrow: "Anlar",
+      title: "Otel ve mahalle",
+      text: "THE BEYBÛN HOTEL’in içine ve çevremizdeki Taksim sokaklarına bir bakış."
+    },
+    contact: {
+      eyebrow: "Rezervasyonlar",
+      title: "İletişim ve rezervasyon",
+      text: "Tarihlerinizi ve oda tercihinizi bildirin. Müsaitliği en kısa sürede onaylarız.",
+      infoTitle: "Otel bilgileri",
+      addressLabel: "Adres",
+      address: "Şehit Muhtar Mah., Nane Sokak No: 8, Beyoğlu, 34435 İstanbul, Türkiye",
+      phoneLabel: "Telefon / WhatsApp",
+      emailLabel: "E-posta",
+      hoursLabel: "Resepsiyon",
+      hours: "24 saat açık",
+      formTitle: "Rezervasyon talebi",
+      name: "Ad soyad",
+      email: "E-posta",
+      phone: "Telefon",
+      room: "Oda tipi",
+      roomSelect: "Bir oda seçin",
+      checkin: "Giriş",
+      checkout: "Çıkış",
+      guests: "Misafir",
+      message: "Mesaj",
+      submit: "Talep gönder",
+      note: "Bu form, rezervasyon bilgileri hazır bir e-posta taslağı açar.",
+      success: "E-posta taslağınız hazır. Talebi tamamlamak için gönderin."
+    },
+    payment: {
+      eyebrow: "Güvenli ödeme",
+      title: "Rezervasyon ödemesi",
+      text: "Rezervasyonunuzu görmek ve kapora ödemek için otelin verdiği ödeme talep numarasını girin.",
+      lookupTitle: "Ödeme talep numarası",
+      lookupText: "THE BEYBÛN HOTEL’den aldığınız kodu kullanın (örnek: BB-123456).",
+      requestLabel: "Talep numarası",
+      lookupBtn: "Rezervasyonu gör",
+      invalid: "Geçersiz ödeme talep numarası.",
+      detailsTitle: "Rezervasyon detayları",
+      clientName: "Misafir adı",
+      room: "Oda",
+      checkin: "Giriş",
+      checkout: "Çıkış",
+      dailyCost: "Günlük ücret",
+      totalCost: "Toplam ücret",
+      downPayment: "Kapora",
+      goPay: "Ödemeye geç",
+      back: "Geri",
+      cardTitle: "Kart bilgileri",
+      paying: "Şimdi ödenecek tutar",
+      cardHolder: "Kart üzerindeki isim",
+      cardNumber: "Kart numarası",
+      cardExpiry: "Son kullanma tarihi",
+      cardCvv: "CVV",
+      submitCard: "Ödemeyi gönder",
+      secureNote: "Kart bilgileriniz işlem için güvenli şekilde otele iletilir. Tahsilat manuel onaylanır.",
+      successTitle: "Teşekkürler",
+      successText: "Ödeme başarıyla gönderildi. Ödemeniz işleniyor. Onaylandıktan sonra ödeme makbuzunuz size iletilecektir. Otelimizi seçtiğiniz için teşekkür ederiz."
+    },
+    footer: {
+      blurb: "Taksim, İstanbul’da butik otel — İstiklal’e yakın, dinlenmeye yetecek kadar sakin.",
+      explore: "Keşfet",
+      visit: "Ziyaret",
+      rights: "Tüm hakları saklıdır."
+    },
+    common: {
+      bookThis: "Bu odayı ayırt",
+      backRooms: "Tüm odalar",
+      specs: "Kısaca"
+    }
+  },
+
+  ar: {
+    dir: "rtl",
+    meta: {
+      homeTitle: "فندق بيبن | تقسيم، إسطنبول",
+      roomsTitle: "الغرف | فندق بيبن",
+      standardTitle: "غرفة قياسية | فندق بيبن",
+      tripleTitle: "غرفة ثلاثية | فندق بيبن",
+      jacuzziTitle: "غرفة جاكوزي | فندق بيبن",
+      aboutTitle: "من نحن | فندق بيبن",
+      galleryTitle: "المعرض | فندق بيبن",
+      contactTitle: "التواصل والحجز | فندق بيبن",
+      paymentTitle: "الدفع | فندق بيبن"
+    },
+    nav: {
+      home: "الرئيسية",
+      rooms: "الغرف",
+      about: "من نحن",
+      gallery: "المعرض",
+      contact: "تواصل",
+      payment: "الدفع",
+      book: "احجز الآن"
+    },
+    brand: {
+      name: "THE BEYBÛN HOTEL",
+      place: "تقسيم · إسطنبول"
+    },
+    home: {
+      headline: "أقم في قلب إسطنبول",
+      text: "إقامة بوتيك على خطوات من شارع الاستقلال وميدان تقسيم — غرف هادئة وضيافة دافئة والمدينة أمام بابك.",
+      ctaRooms: "عرض الغرف",
+      ctaContact: "احجز إقامتك",
+      introEyebrow: "أهلاً بكم",
+      introTitle: "راحة بوتيك في شارع نانه",
+      introText: "يقدّم فندق بيبن قاعدة أنيقة في بي أوغلو للمسافرين الذين يريدون إسطنبول قريبة دون التخلي عن الراحة. من قهوة الصباح إلى العودة ليلاً، نبقي الأمور بسيطة ونظيفة ومضيافة.",
+      roomsEyebrow: "الإقامة",
+      roomsTitle: "ثلاث غرف. اختر إقامتك.",
+      roomsText: "قياسية للأزواج والمسافرين المنفردين، وثلاثية للعائلات والأصدقاء، وجاكوزي لاستراحة أكثر خصوصية.",
+      viewAll: "استكشف كل الغرف",
+      amenEyebrow: "راحة الفندق",
+      amenTitle: "تفاصيل مدروسة كل يوم",
+      a1t: "موقع ممتاز في تقسيم",
+      a1d: "دقائق من شارع الاستقلال وميدان تقسيم والمترو.",
+      a2t: "واي فاي مجاني",
+      a2d: "إنترنت سريع في أنحاء الفندق للعمل والمكالمات.",
+      a3t: "إفطار يومي",
+      a3d: "خيارات طازجة تشمل النباتي والحلال.",
+      a4t: "استقبال على مدار الساعة",
+      a4d: "دعم ودود في أي وقت مع نصائح محلية."
+    },
+    roomsPage: {
+      eyebrow: "أقم معنا",
+      title: "غرفنا",
+      text: "كل غرفة مكيفة مع حمّام خاص وطقم شاي وقهوة والهدوء الذي تحتاجه بعد يوم في المدينة."
+    },
+    roomCards: {
+      standardName: "غرفة قياسية",
+      standardDesc: "غرفة مزدوجة هادئة للأزواج أو المسافرين المنفردين — خطوط نظيفة وإضاءة ناعمة وكل ما يلزم لنوم مريح.",
+      tripleName: "غرفة ثلاثية",
+      tripleDesc: "مساحة كافية لثلاثة ضيوف — مثالية للعائلات أو الأصدقاء الذين يستكشفون إسطنبول معاً.",
+      jacuzziName: "غرفة جاكوزي",
+      jacuzziDesc: "خصوصية أكبر مع جاكوزي داخل الغرفة — استرخِ بعد شوارع تقسيم.",
+      guests2: "ضيفان",
+      guests3: "٣ ضيوف",
+      bath: "حمّام خاص",
+      jacuzzi: "جاكوزي خاص",
+      details: "تفاصيل الغرفة"
+    },
+    standard: {
+      eyebrow: "نوع الغرفة",
+      title: "غرفة قياسية",
+      text: "مريحة ومرتّبة؛ غرفتنا القياسية مصممة لليالي الهادئة قرب طاقة تقسيم.",
+      body: "مرتبة عالية الجودة وستائر معتمة وتكييف وحمّام خاص مع دش وتلفزيون وركن شاي وقهوة. مثالية بعد نزهة طويلة في الاستقلال.",
+      size: "تخطيط مريح",
+      bed: "سرير مزدوج",
+      view: "إقامة حضرية",
+      wifi: "واي فاي مجاني"
+    },
+    triple: {
+      eyebrow: "نوع الغرفة",
+      title: "غرفة ثلاثية",
+      text: "مساحة أكبر للعائلات والمجموعات الصغيرة التي تريد البقاء معاً في مركز بي أوغلو.",
+      body: "تستوعب الغرفة الثلاثية ثلاثة ضيوف بنفس التجهيزات — تكييف وحمّام خاص وتلفزيون وغلاية وتنظيف يومي.",
+      size: "مناسبة للعائلات",
+      bed: "حتى ٣ ضيوف",
+      view: "إقامة حضرية",
+      wifi: "واي فاي مجاني"
+    },
+    jacuzzi: {
+      eyebrow: "نوع الغرفة",
+      title: "غرفة جاكوزي",
+      text: "ملاذ أكثر خصوصية مع جاكوزي خاص — مثالي للأزواج الذين يريدون هدوءاً إضافياً بعد أيام إسطنبول.",
+      body: "نفس راحة الغرفة الحديثة مع جاكوزي خاص. إضاءة ناعمة وأجواء هادئة وحياة تقسيم الليلية على مسافة قصيرة سيراً.",
+      size: "استرخاء مميز",
+      bed: "سرير مزدوج",
+      view: "جاكوزي خاص",
+      wifi: "واي فاي مجاني"
+    },
+    about: {
+      eyebrow: "قصتنا",
+      title: "اسم للهدوء. فندق للمدينة.",
+      text: "بيبن تعني البابونج — رمز الراحة الهادئة. هذه الفكرة توجّه طريقة استقبالنا للضيوف من كل العالم.",
+      body1: "في شارع نانه بحي شهيد مختار، يقع فندق بيبن في أحد أحياء إسطنبول الأكثر ملاءمة للمشي. المتاحف والمقاهي والمعارض والبوسفور قريبة.",
+      body2: "نستقبل مسافرين من إيطاليا وإسبانيا وإيران وما بعدها. فريقنا يعمل بعناية ويحافظ على نظافة الغرف ويساعدكم على التنقل بثقة.",
+      locTitle: "أين تجدوننا",
+      locText: "حي شهيد مختار، شارع نانه رقم ٨، بي أوغلو — دقائق من شارع الاستقلال وميدان تقسيم."
+    },
+    gallery: {
+      eyebrow: "لحظات",
+      title: "الفندق والحي",
+      text: "نظرة داخل فندق بيبن وشوارع تقسيم من حولنا."
+    },
+    contact: {
+      eyebrow: "الحجوزات",
+      title: "التواصل والحجز",
+      text: "أخبرونا بتواريخكم ونوع الغرفة. سنؤكد التوفر في أقرب وقت.",
+      infoTitle: "بيانات الفندق",
+      addressLabel: "العنوان",
+      address: "حي شهيد مختار، شارع نانه رقم ٨، بي أوغلو، ٣٤٤٣٥ إسطنبول، تركيا",
+      phoneLabel: "هاتف / واتساب",
+      emailLabel: "البريد",
+      hoursLabel: "الاستقبال",
+      hours: "مفتوح ٢٤ ساعة",
+      formTitle: "طلب حجز",
+      name: "الاسم الكامل",
+      email: "البريد",
+      phone: "الهاتف",
+      room: "نوع الغرفة",
+      roomSelect: "اختر غرفة",
+      checkin: "تسجيل الدخول",
+      checkout: "تسجيل الخروج",
+      guests: "الضيوف",
+      message: "رسالة",
+      submit: "إرسال الطلب",
+      note: "يفتح هذا النموذج تطبيق البريد مع تفاصيل الحجز جاهزة للإرسال.",
+      success: "مسودة البريد جاهزة. أرسلها لإكمال طلبك."
+    },
+    payment: {
+      eyebrow: "دفع آمن",
+      title: "دفع الحجز",
+      text: "أدخل رقم طلب الدفع الذي زوّدك به الفندق لعرض حجزك ودفع العربون.",
+      lookupTitle: "رقم طلب الدفع",
+      lookupText: "استخدم الرمز الذي استلمته من فندق بيبن (مثال BB-123456).",
+      requestLabel: "رقم الطلب",
+      lookupBtn: "عرض الحجز",
+      invalid: "رقم طلب الدفع غير صالح.",
+      detailsTitle: "تفاصيل الحجز",
+      clientName: "اسم الضيف",
+      room: "الغرفة",
+      checkin: "تسجيل الدخول",
+      checkout: "تسجيل الخروج",
+      dailyCost: "التكلفة اليومية",
+      totalCost: "التكلفة الإجمالية",
+      downPayment: "العربون",
+      goPay: "الانتقال للدفع",
+      back: "رجوع",
+      cardTitle: "بيانات البطاقة",
+      paying: "المبلغ المستحق الآن",
+      cardHolder: "اسم حامل البطاقة",
+      cardNumber: "رقم البطاقة",
+      cardExpiry: "تاريخ الانتهاء",
+      cardCvv: "CVV",
+      submitCard: "إرسال الدفع",
+      secureNote: "تُرسل بيانات بطاقتك بأمان إلى الفندق للمعالجة. يتم تأكيد الرسوم يدوياً.",
+      successTitle: "شكراً لكم",
+      successText: "تم إرسال الدفع بنجاح. جاري معالجة دفعتكم. بعد التأكيد سيتم إرسال إيصال الدفع إليكم. شكراً لاختياركم فندقنا."
+    },
+    footer: {
+      blurb: "فندق بوتيك في تقسيم، إسطنبول — قريب من الاستقلال وهادئ بما يكفي للراحة.",
+      explore: "استكشف",
+      visit: "زرنا",
+      rights: "جميع الحقوق محفوظة."
+    },
+    common: {
+      bookThis: "احجز هذه الغرفة",
+      backRooms: "كل الغرف",
+      specs: "لمحة سريعة"
     }
   }
 };

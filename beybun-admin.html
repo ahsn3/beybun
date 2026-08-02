@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Staff Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="assets/logo.jpeg" />
+</head>
+<body class="admin-body" data-page="admin">
+  <div id="loginScreen" class="admin-login">
+    <form class="admin-login-card form" id="adminLoginForm" autocomplete="off">
+      <img src="assets/logo.jpeg" alt="" class="admin-login-logo" />
+      <h1>Staff access</h1>
+      <p>Private hotel portal. Not linked from the public menu.</p>
+      <div class="field">
+        <label for="adminUsername">Username</label>
+        <input id="adminUsername" type="text" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="adminPassword">Password</label>
+        <input id="adminPassword" type="password" required autocomplete="current-password" />
+      </div>
+      <p class="form-error" id="loginError" hidden>Incorrect username or password.</p>
+      <button class="btn" type="submit">Sign in</button>
+    </form>
+  </div>
+
+  <div id="dashScreen" class="admin-dash" hidden>
+    <header class="admin-header">
+      <div>
+        <p class="eyebrow">THE BEYBÛN HOTEL</p>
+        <h1>Admin dashboard</h1>
+      </div>
+      <button class="btn btn-ghost" type="button" id="logoutBtn">Sign out</button>
+    </header>
+
+    <nav class="admin-tabs" aria-label="Admin sections">
+      <button type="button" class="is-active" data-admin-tab="contacts">Contacts <span id="contactCount">0</span></button>
+      <button type="button" data-admin-tab="payments">Payments <span id="paymentCount">0</span></button>
+      <button type="button" data-admin-tab="create">Create payment</button>
+      <button type="button" data-admin-tab="security">Security</button>
+    </nav>
+
+    <section id="tabContacts" class="admin-section">
+      <h2>Contact requests</h2>
+      <div id="contactsList" class="admin-list"></div>
+    </section>
+
+    <section id="tabPayments" class="admin-section" hidden>
+      <h2>Payment requests</h2>
+      <p class="lead">Share the request number or guest link. Card details appear here after the guest pays (auto-refreshes).</p>
+      <div id="paymentsList" class="admin-list"></div>
+    </section>
+
+    <section id="tabCreate" class="admin-section" hidden>
+      <h2>Create payment request</h2>
+      <div id="createdBox" class="created-box" hidden>
+        <p>Payment request created. Share this number with the guest:</p>
+        <p class="mono created-number" id="createdNumber"></p>
+        <p>Or send this guest payment link (works on any phone):</p>
+        <p><a id="createdLink" href="#" target="_blank" rel="noopener"></a></p>
+      </div>
+      <form class="form admin-form" id="createPaymentForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="clientName">Guest name</label>
+            <input id="clientName" name="clientName" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone / WhatsApp</label>
+            <input id="phone" name="phone" type="tel" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" />
+          </div>
+          <div class="field">
+            <label for="room">Room</label>
+            <input id="room" name="room" placeholder="Jacuzzi Room" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="checkin">Check-in</label>
+            <input id="checkin" name="checkin" type="date" required />
+          </div>
+          <div class="field">
+            <label for="checkout">Check-out</label>
+            <input id="checkout" name="checkout" type="date" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="dailyCost">Daily cost (TRY)</label>
+            <input id="dailyCost" name="dailyCost" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="field">
+            <label for="totalCost">Total cost (TRY)</label>
+            <input id="totalCost" name="totalCost" type="number" min="0" step="0.01" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="downPayment">Down payment amount (TRY)</label>
+          <input id="downPayment" name="downPayment" type="number" min="0" step="0.01" required />
+        </div>
+        <div class="field">
+          <label for="notes">Notes</label>
+          <textarea id="notes" name="notes"></textarea>
+        </div>
+        <button class="btn" type="submit">Generate payment request</button>
+      </form>
+    </section>
+
+    <section id="tabSecurity" class="admin-section" hidden>
+      <h2>Security</h2>
+      <p class="lead">Username is fixed as <strong class="mono">Mustafa.Beybun</strong>. You can change only the password.</p>
+      <form class="form admin-form" id="changePasswordForm">
+        <div class="field">
+          <label for="currentPassword">Current password</label>
+          <input id="currentPassword" type="password" required autocomplete="current-password" />
+        </div>
+        <div class="field">
+          <label for="newPassword">New password</label>
+          <input id="newPassword" type="password" required minlength="8" autocomplete="new-password" />
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Confirm new password</label>
+          <input id="confirmPassword" type="password" required minlength="8" autocomplete="new-password" />
+        </div>
+        <p id="passwordMsg" hidden></p>
+        <button class="btn" type="submit">Update password</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

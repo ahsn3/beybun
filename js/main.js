@@ -1,18 +1,26 @@
 (function () {
   var LANG_KEY = "beybun-lang";
-  var supported = ["en", "it", "es", "fa"];
+  var supported = ["en", "tr", "ar", "it", "es", "fa"];
+  var langMeta = {
+    en: { flag: "🇬🇧", label: "English", code: "EN" },
+    tr: { flag: "🇹🇷", label: "Türkçe", code: "TR" },
+    ar: { flag: "🇸🇦", label: "العربية", code: "AR" },
+    it: { flag: "🇮🇹", label: "Italiano", code: "IT" },
+    es: { flag: "🇪🇸", label: "Español", code: "ES" },
+    fa: { flag: "🇮🇷", label: "فارسی", code: "FA" }
+  };
 
   function getLang() {
     var stored = localStorage.getItem(LANG_KEY);
     if (supported.indexOf(stored) !== -1) return stored;
     var browser = (navigator.language || "en").slice(0, 2).toLowerCase();
-    if (browser === "fa" || browser === "it" || browser === "es") return browser;
+    if (supported.indexOf(browser) !== -1) return browser;
     return "en";
   }
 
   function t(lang, path) {
     var parts = path.split(".");
-    var node = window.BEYBUN_I18N[lang];
+    var node = window.BEYBUN_I18N[lang] || window.BEYBUN_I18N.en;
     for (var i = 0; i < parts.length; i++) {
       if (!node) return path;
       node = node[parts[i]];
@@ -58,18 +66,70 @@
       jacuzzi: "meta.jacuzziTitle",
       about: "meta.aboutTitle",
       gallery: "meta.galleryTitle",
-      contact: "meta.contactTitle"
+      contact: "meta.contactTitle",
+      payment: "meta.paymentTitle"
     }[page];
     if (titleKey) document.title = t(lang, titleKey);
 
-    var select = document.getElementById("langSelect");
-    if (select) select.value = lang;
+    syncLangSwitcher(lang);
   }
 
   function setLang(lang) {
     if (supported.indexOf(lang) === -1) lang = "en";
     localStorage.setItem(LANG_KEY, lang);
     applyTranslations(lang);
+  }
+
+  function buildLangSwitcher(root, current) {
+    var meta = langMeta[current] || langMeta.en;
+    root.innerHTML =
+      '<button type="button" class="lang-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">' +
+        '<span class="lang-flag">' + meta.flag + "</span>" +
+        '<span class="lang-code">' + meta.code + "</span>" +
+      "</button>" +
+      '<ul class="lang-menu" role="listbox"></ul>';
+
+    var menu = root.querySelector(".lang-menu");
+    supported.forEach(function (code) {
+      var item = langMeta[code];
+      var li = document.createElement("li");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("role", "option");
+      btn.dataset.lang = code;
+      if (code === current) btn.classList.add("is-active");
+      btn.innerHTML = '<span class="lang-flag">' + item.flag + "</span><span>" + item.label + "</span>";
+      btn.addEventListener("click", function () {
+        root.classList.remove("is-open");
+        root.querySelector(".lang-toggle").setAttribute("aria-expanded", "false");
+        setLang(code);
+      });
+      li.appendChild(btn);
+      menu.appendChild(li);
+    });
+
+    var toggle = root.querySelector(".lang-toggle");
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = root.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+
+  function syncLangSwitcher(lang) {
+    document.querySelectorAll(".lang-switch").forEach(function (root) {
+      buildLangSwitcher(root, lang);
+    });
+  }
+
+  function initLangSwitcher() {
+    document.addEventListener("click", function () {
+      document.querySelectorAll(".lang-switch.is-open").forEach(function (root) {
+        root.classList.remove("is-open");
+        var toggle = root.querySelector(".lang-toggle");
+        if (toggle) toggle.setAttribute("aria-expanded", "false");
+      });
+    });
   }
 
   function initNav() {
@@ -151,12 +211,26 @@
         jacuzzi: t(lang, "roomCards.jacuzziName")
       };
       var room = data.get("room");
-      var subject = "Booking request — THE BEYBÛN HOTEL";
+      var roomLabel = roomLabels[room] || room;
+
+      if (window.BeybunStore) {
+        window.BeybunStore.addContact({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          room: roomLabel,
+          checkin: data.get("checkin"),
+          checkout: data.get("checkout"),
+          guests: data.get("guests"),
+          message: data.get("message") || ""
+        });
+      }
+
       var body = [
         "Name: " + data.get("name"),
         "Email: " + data.get("email"),
         "Phone: " + data.get("phone"),
-        "Room: " + (roomLabels[room] || room),
+        "Room: " + roomLabel,
         "Check-in: " + data.get("checkin"),
         "Check-out: " + data.get("checkout"),
         "Guests: " + data.get("guests"),
@@ -164,12 +238,13 @@
         "Message:",
         data.get("message") || "-"
       ].join("\n");
-      var mailto = "mailto:info@beybunhotel.com?subject=" +
-        encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-      window.location.href = mailto;
+
+      // Deliver request to hotel WhatsApp so staff always receive it
+      window.open("https://wa.me/905302296779?text=" + encodeURIComponent("New booking request\n\n" + body), "_blank", "noopener");
+
       var success = document.getElementById("formSuccess");
       if (success) success.classList.add("is-visible");
+      form.reset();
     });
 
     var params = new URLSearchParams(window.location.search);
@@ -182,17 +257,19 @@
     if (el) el.textContent = String(new Date().getFullYear());
   }
 
+  function upgradeLegacyLangSelects() {
+    document.querySelectorAll(".lang-switch").forEach(function (root) {
+      var select = root.querySelector("select");
+      if (select) select.remove();
+      root.innerHTML = "";
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
+    upgradeLegacyLangSelects();
+    initLangSwitcher();
     var lang = getLang();
     applyTranslations(lang);
-
-    var select = document.getElementById("langSelect");
-    if (select) {
-      select.addEventListener("change", function () {
-        setLang(select.value);
-      });
-    }
-
     initNav();
     initReveal();
     initRoomGallery();

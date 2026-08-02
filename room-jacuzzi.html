@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -23,6 +23,7 @@
         <a href="about.html" data-nav="about" data-i18n="nav.about">About</a>
         <a href="gallery.html" data-nav="gallery" data-i18n="nav.gallery">Gallery</a>
         <a href="contact.html" data-nav="contact" data-i18n="nav.contact">Contact</a>
+        <a href="payment.html" data-nav="payment" data-i18n="nav.payment">Payment</a>
       </nav>
       <div class="header-actions">
         <div class="lang-switch">
@@ -42,7 +43,7 @@
   <main>
     <section class="page-hero">
       <div class="hero-media">
-        <img src="assets/rooms/jacuzzi-1.jpeg" alt="Jacuzzi Room" />
+        <img src="assets/rooms/jacuzzi-1.jpg" alt="Jacuzzi Room" />
       </div>
       <div class="container hero-content">
         <span class="eyebrow" data-i18n="jacuzzi.eyebrow">Room type</span>
@@ -55,12 +56,13 @@
       <div class="container room-detail-grid">
         <div class="room-gallery reveal">
           <div class="room-gallery-main">
-            <img id="roomMainImage" src="assets/rooms/jacuzzi-1.jpeg" alt="Jacuzzi Room" />
+            <img id="roomMainImage" src="assets/rooms/jacuzzi-1.jpg" alt="Jacuzzi Room" />
           </div>
           <div class="room-gallery-thumbs">
-            <button type="button" class="is-active" data-room-thumb="assets/rooms/jacuzzi-1.jpeg"><img src="assets/rooms/jacuzzi-1.jpeg" alt="" /></button>
-            <button type="button" data-room-thumb="assets/rooms/jacuzzi-2.jpeg"><img src="assets/rooms/jacuzzi-2.jpeg" alt="" /></button>
-            <button type="button" data-room-thumb="assets/rooms/jacuzzi-3.jpeg"><img src="assets/rooms/jacuzzi-3.jpeg" alt="" /></button>
+            <button type="button" class="is-active" data-room-thumb="assets/rooms/jacuzzi-1.jpg"><img src="assets/rooms/jacuzzi-1.jpg" alt="" /></button>
+            <button type="button" data-room-thumb="assets/rooms/jacuzzi-2.jpg"><img src="assets/rooms/jacuzzi-2.jpg" alt="" /></button>
+            <button type="button" data-room-thumb="assets/rooms/jacuzzi-3.jpg"><img src="assets/rooms/jacuzzi-3.jpg" alt="" /></button>
+            <button type="button" data-room-thumb="assets/rooms/jacuzzi-4.jpg"><img src="assets/rooms/jacuzzi-4.jpg" alt="" /></button>
           </div>
         </div>
         <aside class="room-aside reveal">
@@ -103,7 +105,7 @@
     </div>
     <div class="container footer-bottom">
       <span>© <span id="year"></span> THE BEYBÛN HOTEL. <span data-i18n="footer.rights">All rights reserved.</span></span>
-      <span data-i18n="brand.place">Taksim · Istanbul</span>
+      <a class="admin-entry" href="beybun-admin.html" data-i18n="brand.place" title="">Taksim · Istanbul</a>
     </div>
   </footer>
 
