@@ -78,15 +78,9 @@
             <input id="phone" name="phone" type="tel" />
           </div>
         </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" />
-          </div>
-          <div class="field">
-            <label for="room">Room</label>
-            <input id="room" name="room" placeholder="Jacuzzi Room" />
-          </div>
+        <div class="field">
+          <label for="room">Room</label>
+          <input id="room" name="room" placeholder="Jacuzzi Room" />
         </div>
         <div class="form-row">
           <div class="field">
@@ -98,6 +92,11 @@
             <input id="checkout" name="checkout" type="date" required />
           </div>
         </div>
+        <div class="field">
+          <label>Nights</label>
+          <p class="nights-display mono" id="nightsDisplay">—</p>
+          <input type="hidden" name="nights" id="nights" value="" />
+        </div>
         <div class="form-row">
           <div class="field">
             <label for="dailyCost">Daily cost (TRY)</label>
@@ -105,7 +104,7 @@
           </div>
           <div class="field">
             <label for="totalCost">Total cost (TRY)</label>
-            <input id="totalCost" name="totalCost" type="number" min="0" step="0.01" required />
+            <input id="totalCost" name="totalCost" type="number" min="0" step="0.01" required readonly />
           </div>
         </div>
         <div class="field">
@@ -122,23 +121,8 @@
 
     <section id="tabSecurity" class="admin-section" hidden>
       <h2>Security</h2>
-      <p class="lead">Username is fixed as <strong class="mono">Mustafa.Beybun</strong>. You can change only the password.</p>
-      <form class="form admin-form" id="changePasswordForm">
-        <div class="field">
-          <label for="currentPassword">Current password</label>
-          <input id="currentPassword" type="password" required autocomplete="current-password" />
-        </div>
-        <div class="field">
-          <label for="newPassword">New password</label>
-          <input id="newPassword" type="password" required minlength="8" autocomplete="new-password" />
-        </div>
-        <div class="field">
-          <label for="confirmPassword">Confirm new password</label>
-          <input id="confirmPassword" type="password" required minlength="8" autocomplete="new-password" />
-        </div>
-        <p id="passwordMsg" hidden></p>
-        <button class="btn" type="submit">Update password</button>
-      </form>
+      <p class="lead">Username is <strong class="mono">Mustafa.Beybun</strong>. Change the password in Railway Variables: <span class="mono">ADMIN_PASSWORD</span> (and optionally <span class="mono">JWT_SECRET</span>).</p>
+      <p class="admin-empty">Payments and contacts are stored in PostgreSQL so every device sees the same data.</p>
     </section>
   </div>
 

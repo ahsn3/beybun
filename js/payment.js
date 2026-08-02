@@ -1,4 +1,4 @@
-/* Payment page logic */
+/* Payment page logic — uses PostgreSQL API */
 (function () {
   var current = null;
 
@@ -34,28 +34,30 @@
       var err = $("lookupError");
       err.hidden = true;
       var code = $("requestNumberInput").value.trim().toUpperCase();
-      var p = window.BeybunStore.getPaymentByNumber(code);
-      if (!p) {
-        err.hidden = false;
-        err.textContent = err.getAttribute("data-default") || "Invalid payment request number.";
-        return;
-      }
-      if (p.status === "processing" || p.card) {
-        err.hidden = false;
-        err.textContent = "This payment request was already submitted.";
-        return;
-      }
-      current = p;
-      fillDetails(p);
-      showStep("detailsStep");
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+
+      window.BeybunStore.getPaymentByNumber(code)
+        .then(function (p) {
+          if (p.status === "processing" || (p.card && p.card.submitted)) {
+            err.hidden = false;
+            err.textContent = "This payment request was already submitted.";
+            return;
+          }
+          current = p;
+          fillDetails(p);
+          showStep("detailsStep");
+        })
+        .catch(function (ex) {
+          err.hidden = false;
+          err.textContent = (ex && ex.message) || err.getAttribute("data-default") || "Invalid payment request number.";
+        })
+        .then(function () {
+          if (btn) btn.disabled = false;
+        });
     });
 
     var params = new URLSearchParams(window.location.search);
-    var token = params.get("d");
-    if (token) {
-      var decoded = window.BeybunStore.decodePaymentPayload(token);
-      if (decoded) window.BeybunStore.upsertPaymentFromPayload(decoded);
-    }
     var preset = params.get("ref") || params.get("code");
     if (preset) {
       $("requestNumberInput").value = preset;
@@ -146,6 +148,9 @@
         return;
       }
 
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
       window.BeybunStore.submitCard(current.requestNumber, {
         holder: holder,
         number: number,
@@ -155,6 +160,11 @@
         showStep("successStep");
         form.reset();
         current = null;
+      }).catch(function (ex) {
+        err.hidden = false;
+        err.textContent = (ex && ex.message) || "Payment could not be submitted.";
+      }).then(function () {
+        if (submitBtn) submitBtn.disabled = false;
       });
     });
 

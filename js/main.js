@@ -222,7 +222,7 @@
           checkout: data.get("checkout"),
           guests: data.get("guests"),
           message: data.get("message") || ""
-        });
+        }).catch(function () { /* WhatsApp still delivers the request */ });
       }
 
       var body = [

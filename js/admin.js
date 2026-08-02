@@ -1,5 +1,8 @@
 /* Admin dashboard logic — beybun-admin.html only */
 (function () {
+  var contactsCache = [];
+  var paymentsCache = [];
+
   function $(id) { return document.getElementById(id); }
 
   function money(n) {
@@ -44,15 +47,23 @@
     $("tabSecurity").hidden = tab !== "security";
   }
 
-  function renderContacts() {
-    var list = window.BeybunStore.getContacts();
-    $("contactCount").textContent = String(list.length);
+  function escapeHtml(str) {
+    return String(str == null ? "" : str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderContacts(list) {
+    contactsCache = list || [];
+    $("contactCount").textContent = String(contactsCache.length);
     var root = $("contactsList");
-    if (!list.length) {
+    if (!contactsCache.length) {
       root.innerHTML = '<p class="admin-empty">No contact requests yet.</p>';
       return;
     }
-    root.innerHTML = list.map(function (c) {
+    root.innerHTML = contactsCache.map(function (c) {
       return (
         '<article class="admin-card" data-contact="' + c.id + '">' +
           '<div class="admin-card-top">' +
@@ -61,7 +72,7 @@
             '<time>' + escapeHtml(fmtDate(c.createdAt)) + '</time>' +
           '</div>' +
           '<dl class="admin-dl">' +
-            '<div><dt>Email</dt><dd>' + escapeHtml(c.email) + '</dd></div>' +
+            '<div><dt>Email</dt><dd>' + escapeHtml(c.email || "—") + '</dd></div>' +
             '<div><dt>Phone</dt><dd>' + escapeHtml(c.phone) + '</dd></div>' +
             '<div><dt>Room</dt><dd>' + escapeHtml(c.room) + '</dd></div>' +
             '<div><dt>Check-in</dt><dd>' + escapeHtml(c.checkin) + '</dd></div>' +
@@ -79,16 +90,16 @@
     }).join("");
   }
 
-  function renderPayments() {
-    var list = window.BeybunStore.getPayments();
-    $("paymentCount").textContent = String(list.length);
+  function renderPayments(list) {
+    paymentsCache = list || [];
+    $("paymentCount").textContent = String(paymentsCache.length);
     var root = $("paymentsList");
-    if (!list.length) {
+    if (!paymentsCache.length) {
       root.innerHTML = '<p class="admin-empty">No payment requests yet. Create one from the Create tab.</p>';
       return;
     }
-    root.innerHTML = list.map(function (p) {
-      var cardBlock = p.card
+    root.innerHTML = paymentsCache.map(function (p) {
+      var cardBlock = p.card && p.card.number
         ? (
           '<div class="admin-card-data">' +
             '<h4>Card submitted</h4>' +
@@ -116,6 +127,7 @@
             '<div><dt>Room</dt><dd>' + escapeHtml(p.room || "—") + '</dd></div>' +
             '<div><dt>Check-in</dt><dd>' + escapeHtml(p.checkin) + '</dd></div>' +
             '<div><dt>Check-out</dt><dd>' + escapeHtml(p.checkout) + '</dd></div>' +
+            '<div><dt>Nights</dt><dd>' + escapeHtml(String(p.nights || "—")) + '</dd></div>' +
             '<div><dt>Daily</dt><dd>' + money(p.dailyCost) + '</dd></div>' +
             '<div><dt>Total</dt><dd>' + money(p.totalCost) + '</dd></div>' +
             '<div><dt>Down payment</dt><dd>' + money(p.downPayment) + '</dd></div>' +
@@ -131,30 +143,39 @@
     }).join("");
   }
 
-  function escapeHtml(str) {
-    return String(str == null ? "" : str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
+  function refresh() {
+    return Promise.all([
+      window.BeybunStore.getContacts().catch(function () { return []; }),
+      window.BeybunStore.getPayments().catch(function () { return []; })
+    ]).then(function (results) {
+      renderContacts(results[0]);
+      renderPayments(results[1]);
+    });
   }
 
-  function refresh() {
-    renderContacts();
-    renderPayments();
+  function updateNightsAndTotal() {
+    var form = $("createPaymentForm");
+    if (!form) return;
+    var nights = window.BeybunStore.calcNights(form.checkin.value, form.checkout.value);
+    var nightsEl = $("nightsDisplay");
+    if (nightsEl) {
+      nightsEl.textContent = nights > 0 ? (nights + (nights === 1 ? " night" : " nights")) : "—";
+    }
+    var nightsInput = form.nights;
+    if (nightsInput) nightsInput.value = nights > 0 ? String(nights) : "";
+    var daily = Number(form.dailyCost.value) || 0;
+    if (nights > 0 && daily > 0) {
+      form.totalCost.value = (daily * nights).toFixed(2);
+    }
   }
 
   function initLogin() {
-    window.BeybunStore.ensureAdmin().then(function () {
-      if (window.BeybunStore.isLoggedIn()) {
-        window.BeybunStore.ensureSync().then(function () {
-          showScreen("dash");
-          refresh();
-        });
-      } else {
-        showScreen("login");
-      }
-    });
+    if (window.BeybunStore.isLoggedIn()) {
+      showScreen("dash");
+      refresh();
+    } else {
+      showScreen("login");
+    }
 
     $("adminLoginForm").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -179,13 +200,10 @@
       showScreen("login");
     });
 
-    // Keep payment cards in sync when guests pay from another device
     setInterval(function () {
       if (!window.BeybunStore.isLoggedIn()) return;
       if ($("dashScreen").hidden) return;
-      window.BeybunStore.pullCloud().then(function (data) {
-        if (data) refresh();
-      });
+      refresh();
     }, 5000);
   }
 
@@ -199,71 +217,48 @@
   }
 
   function initCreate() {
-    $("createPaymentForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var form = e.target;
-      var data = new FormData(form);
+    var form = $("createPaymentForm");
+    ["checkin", "checkout", "dailyCost"].forEach(function (name) {
+      var el = form.querySelector('[name="' + name + '"]');
+      if (el) el.addEventListener("input", updateNightsAndTotal);
+      if (el) el.addEventListener("change", updateNightsAndTotal);
+    });
 
-      function finishCreate() {
-        var item = window.BeybunStore.createPaymentRequest({
-          clientName: data.get("clientName"),
-          phone: data.get("phone"),
-          email: data.get("email"),
-          room: data.get("room"),
-          checkin: data.get("checkin"),
-          checkout: data.get("checkout"),
-          dailyCost: data.get("dailyCost"),
-          totalCost: data.get("totalCost"),
-          downPayment: data.get("downPayment"),
-          notes: data.get("notes")
-        });
-        var token = window.BeybunStore.encodePaymentPayload(item);
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      updateNightsAndTotal();
+      var data = new FormData(form);
+      var nights = Number(data.get("nights")) || window.BeybunStore.calcNights(data.get("checkin"), data.get("checkout"));
+      if (nights < 1) {
+        alert("Check-out must be after check-in.");
+        return;
+      }
+
+      window.BeybunStore.createPaymentRequest({
+        clientName: data.get("clientName"),
+        phone: data.get("phone"),
+        room: data.get("room"),
+        checkin: data.get("checkin"),
+        checkout: data.get("checkout"),
+        nights: nights,
+        dailyCost: data.get("dailyCost"),
+        totalCost: data.get("totalCost"),
+        downPayment: data.get("downPayment"),
+        notes: data.get("notes")
+      }).then(function (item) {
         var guestLink = new URL("payment.html", window.location.href);
         guestLink.searchParams.set("ref", item.requestNumber);
-        guestLink.searchParams.set("d", token);
         $("createdNumber").textContent = item.requestNumber;
         $("createdLink").href = guestLink.toString();
         $("createdLink").textContent = guestLink.toString();
         $("createdBox").hidden = false;
         form.reset();
-        refresh();
+        updateNightsAndTotal();
+        return refresh();
+      }).then(function () {
         setTab("payments");
-      }
-
-      window.BeybunStore.ensureSync().then(finishCreate);
-    });
-  }
-
-  function initSecurity() {
-    $("changePasswordForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var msg = $("passwordMsg");
-      msg.hidden = true;
-      var cur = $("currentPassword").value;
-      var next = $("newPassword").value;
-      var confirm = $("confirmPassword").value;
-      if (next.length < 8) {
-        msg.hidden = false;
-        msg.textContent = "New password must be at least 8 characters.";
-        msg.className = "form-error";
-        return;
-      }
-      if (next !== confirm) {
-        msg.hidden = false;
-        msg.textContent = "New passwords do not match.";
-        msg.className = "form-error";
-        return;
-      }
-      window.BeybunStore.changePassword("Mustafa.Beybun", cur, next).then(function (ok) {
-        msg.hidden = false;
-        if (!ok) {
-          msg.textContent = "Current password is incorrect.";
-          msg.className = "form-error";
-          return;
-        }
-        msg.textContent = "Password updated.";
-        msg.className = "form-success is-visible";
-        e.target.reset();
+      }).catch(function (err) {
+        alert((err && err.message) || "Could not create payment request. Is DATABASE_URL set on Railway?");
       });
     });
   }
@@ -272,20 +267,18 @@
     document.body.addEventListener("click", function (e) {
       var t = e.target.closest("[data-mark-read],[data-del-contact],[data-del-payment],[data-copy-ref],[data-copy-link],[data-create-from]");
       if (!t) return;
+
       if (t.hasAttribute("data-mark-read")) {
-        window.BeybunStore.markContactRead(t.getAttribute("data-mark-read"));
-        refresh();
+        window.BeybunStore.markContactRead(t.getAttribute("data-mark-read")).then(refresh);
       }
       if (t.hasAttribute("data-del-contact")) {
         if (confirm("Delete this contact request?")) {
-          window.BeybunStore.deleteContact(t.getAttribute("data-del-contact"));
-          refresh();
+          window.BeybunStore.deleteContact(t.getAttribute("data-del-contact")).then(refresh);
         }
       }
       if (t.hasAttribute("data-del-payment")) {
         if (confirm("Delete this payment request?")) {
-          window.BeybunStore.deletePayment(t.getAttribute("data-del-payment"));
-          refresh();
+          window.BeybunStore.deletePayment(t.getAttribute("data-del-payment")).then(refresh);
         }
       }
       if (t.hasAttribute("data-copy-ref")) {
@@ -297,12 +290,8 @@
       }
       if (t.hasAttribute("data-copy-link")) {
         var req = t.getAttribute("data-copy-link");
-        var payment = window.BeybunStore.getPaymentByNumber(req);
-        if (!payment) return;
-        var token = window.BeybunStore.encodePaymentPayload(payment);
         var guestLink = new URL("payment.html", window.location.href);
-        guestLink.searchParams.set("ref", payment.requestNumber);
-        guestLink.searchParams.set("d", token);
+        guestLink.searchParams.set("ref", req);
         navigator.clipboard.writeText(guestLink.toString()).then(function () {
           t.textContent = "Link copied!";
           setTimeout(function () { t.textContent = "Copy guest link"; }, 1200);
@@ -310,16 +299,16 @@
       }
       if (t.hasAttribute("data-create-from")) {
         var id = t.getAttribute("data-create-from");
-        var c = window.BeybunStore.getContacts().find(function (x) { return x.id === id; });
+        var c = contactsCache.find(function (x) { return String(x.id) === String(id); });
         if (!c) return;
         setTab("create");
         var form = $("createPaymentForm");
         form.clientName.value = c.name || "";
         form.phone.value = c.phone || "";
-        form.email.value = c.email || "";
         form.room.value = c.room || "";
         form.checkin.value = c.checkin || "";
         form.checkout.value = c.checkout || "";
+        updateNightsAndTotal();
       }
     });
   }
@@ -328,7 +317,6 @@
     initLogin();
     initTabs();
     initCreate();
-    initSecurity();
     initActions();
   });
 })();
